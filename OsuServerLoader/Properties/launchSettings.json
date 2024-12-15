@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "OsuServerLoader (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "OsuServerLoader (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

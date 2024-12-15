@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="OsuServerLoader.Pages.EditPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:OsuServerLoader.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:controls="using:CommunityToolkit.WinUI.Controls"
+    xmlns:ui="using:CommunityToolkit.WinUI">
+
+    <Grid Margin="24,6,24,16">
+        <StackPanel Spacing="6">
+            <controls:SettingsCard Header="Label"
+                           Description="Enter label for server"
+                           HeaderIcon="{ui:FontIcon Glyph=&#xE932;}"
+                           IsEnabled="True">
+                <TextBox x:Name="TextBoxLabel" MinWidth="200" MaxWidth="200" MaxLength="20" PlaceholderText="Okayu" SelectionChanged="TextBoxLabelHandler"/>
+            </controls:SettingsCard>
+
+            <controls:SettingsCard Header="Devflag"
+                           Description="Enter server devflag"
+                           HeaderIcon="{ui:FontIcon Glyph=&#xE88A;}"
+                           IsEnabled="True">
+                <TextBox x:Name="TextBoxDevflag" MinWidth="200" PlaceholderText="osuokayu.moe" SelectionChanged="TextBoxDevflagHandler"/>
+            </controls:SettingsCard>
+
+            <controls:SettingsCard Header="Nickname"
+                           Description="Enter your account nickname"
+                           HeaderIcon="{ui:FontIcon Glyph=&#xE910;}"
+                           IsEnabled="True">
+                <TextBox x:Name="TextBoxNickname" MinWidth="200" PlaceholderText="Shawliz" SelectionChanged="TextBoxNicknameHandler"/>
+            </controls:SettingsCard>
+
+            <controls:SettingsCard Header="Password"
+                           Description="Enter yout password for account"
+                           HeaderIcon="{ui:FontIcon Glyph=&#xE8D7;}"
+                           IsEnabled="True">
+                <PasswordBox x:Name="PasswordBoxAccount" MinWidth="200" PlaceholderText="qwerty1234!!" PasswordChanged="PasswordBoxAccountHandler"/>
+            </controls:SettingsCard>
+        </StackPanel>
+        <Button Content="Add" Style="{StaticResource AccentButtonStyle}"
+        VerticalAlignment="Bottom"
+        HorizontalAlignment="Stretch"
+        x:Name="ButtonAdd"
+        IsEnabled="True"
+        Click="ButtonAddHandler"/>
+    </Grid>
+</Page>
