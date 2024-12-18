@@ -6,6 +6,10 @@
     <AppxBuildConfigurationSelection>x86</AppxBuildConfigurationSelection>
     <PackageOptionalProjectsInIdeBuilds>False</PackageOptionalProjectsInIdeBuilds>
     <_LastSelectedProfileId>C:\Users\klonerovsky\VS projects\OsuServerLoader\OsuServerLoader\Properties\PublishProfiles\win-arm64.pubxml</_LastSelectedProfileId>
+    <ActiveDebugProfile>OsuServerLoader (Unpackaged)</ActiveDebugProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <ItemGroup>
     <None Update="App.xaml">

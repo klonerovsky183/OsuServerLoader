@@ -42,7 +42,7 @@ namespace OsuServerLoader
             this.InitializeComponent();
             CurrentInstance = this;
 
-            TitleBarTextBlock.Text = AppInfo.Current.DisplayInfo.DisplayName;
+            TitleBarTextBlock.Text = "Osu Server Loader";
             ExtendsContentIntoTitleBar = true;
 
             IntPtr screenDC = GetDC(IntPtr.Zero);

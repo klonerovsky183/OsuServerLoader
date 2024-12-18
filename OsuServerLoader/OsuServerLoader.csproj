@@ -22,6 +22,19 @@
     <AppxBundle>Never</AppxBundle>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
   </PropertyGroup>
+
+	<PropertyGroup Condition="'$(IsMsixRelease)' != 'true'">
+		<WindowsPackageType>None</WindowsPackageType>
+		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(IsMsixRelease)' == 'true'">
+		<AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+		<AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+		<GenerateTestArtifacts>True</GenerateTestArtifacts>
+		<AppxBundle>Always</AppxBundle>
+	</PropertyGroup>
+	
   <ItemGroup>
     <None Remove="Pages\AddPage.xaml" />
     <None Remove="Pages\EditPage.xaml" />
