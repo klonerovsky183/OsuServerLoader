@@ -88,6 +88,7 @@ namespace OsuServerLoader.Pages
                 uiConfig.currentDevflag = "";
                 uiConfig.currentNickname = "";
                 uiConfig.currentPassword = "";
+                
                 configService.Save(uiConfig);
             }
         }

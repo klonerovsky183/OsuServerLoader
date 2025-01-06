@@ -65,7 +65,7 @@ namespace OsuServerLoader.Pages
             }
         }
 
-        private async void ButtonAddHandler(object sender, RoutedEventArgs e)
+        private async void ButtonEditHandler(object sender, RoutedEventArgs e)
         {
             if (uiConfig.currentNickname == "" || uiConfig.currentPassword == "" || uiConfig.currentLabel == "" || uiConfig.currentDevflag == "" || uiConfig.osuPath == "")
             {
@@ -81,6 +81,8 @@ namespace OsuServerLoader.Pages
             }
             else
             {
+                dataService.DeleteRow(uiConfig.selectedLabel);
+
                 Services.Server account = new Server();
                 account.label = uiConfig.currentLabel;
                 account.devflag = uiConfig.currentDevflag;
@@ -91,6 +93,7 @@ namespace OsuServerLoader.Pages
                 this.Frame.Navigate(typeof(HomePage));
                 MainWindow.CurrentInstance.NaviagateTo(0);
 
+                uiConfig.selectedLabel = uiConfig.currentLabel;
                 uiConfig.currentLabel = "";
                 uiConfig.currentDevflag = "";
                 uiConfig.currentNickname = "";

@@ -42,6 +42,7 @@ namespace OsuServerLoader.Pages
                 ButtonEdit.IsEnabled = true;
                 ButtonDelete.IsEnabled = true;
                 ComboBoxServers.IsEnabled = true;
+                ComboBoxServers.SelectedIndex = uiConfig.serverIndex;
 
                 uiConfig.selectedLabel = ComboBoxServers.Items[uiConfig.serverIndex].ToString();
                 configService.Save(uiConfig);
@@ -100,14 +101,14 @@ namespace OsuServerLoader.Pages
         private async void ButtonEditHandler(object sender, RoutedEventArgs e)
         {
             uiConfig.serverIndex = 0;
-            configService.Save(uiConfig);
 
             Server server = dataService.GetServer(uiConfig.selectedLabel);
             uiConfig.currentLabel = server.label;
             uiConfig.currentDevflag = server.devflag;
             uiConfig.currentNickname = server.nickname;
             uiConfig.currentPassword = server.password;
-            dataService.DeleteRow(uiConfig.selectedLabel);
+
+            configService.Save(uiConfig);
 
             MainWindow.CurrentInstance.HeaderChange("Edit server");
             this.Frame.Navigate(typeof(EditPage));
@@ -145,7 +146,7 @@ namespace OsuServerLoader.Pages
             osuProcessHandler.StartInfo.Arguments = "-devserver " + server.devflag;
             osuProcessHandler.Start();
 
-            if (ToggleSwitchPatcher.IsOn == true)
+            if (ToggleSwitchPatcher.IsOn == true && osuProcessHandler.StartInfo.Arguments != "-devserver" && osuProcessHandler.StartInfo.Arguments != "-devserver ppy.sh")
             {
                 await Task.Delay(1000);
                 var patcherProcessHandler = new Process();
@@ -185,7 +186,7 @@ namespace OsuServerLoader.Pages
             configService.Save(uiConfig);
 
             await Task.Delay(100);
-            System.Environment.Exit(0);
+            Process.GetCurrentProcess().Kill();
         }
     }
 }

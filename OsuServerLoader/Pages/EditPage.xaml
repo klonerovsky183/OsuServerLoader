@@ -40,11 +40,12 @@
                 <PasswordBox x:Name="PasswordBoxAccount" MinWidth="200" PlaceholderText="qwerty1234!!" PasswordChanged="PasswordBoxAccountHandler"/>
             </controls:SettingsCard>
         </StackPanel>
-        <Button Content="Add" Style="{StaticResource AccentButtonStyle}"
+        
+        <Button Content="Save" Style="{StaticResource AccentButtonStyle}"
         VerticalAlignment="Bottom"
         HorizontalAlignment="Stretch"
         x:Name="ButtonAdd"
         IsEnabled="True"
-        Click="ButtonAddHandler"/>
+        Click="ButtonEditHandler"/>
     </Grid>
 </Page>
