@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Net;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -148,9 +150,19 @@ namespace OsuServerLoader.Pages
 
             if (ToggleSwitchPatcher.IsOn == true && osuProcessHandler.StartInfo.Arguments != "-devserver" && osuProcessHandler.StartInfo.Arguments != "-devserver ppy.sh")
             {
+                string patcherpath = userFolderPath + "\\.OsuServerLoader\\Osu!Patcher";
+                if(!Directory.Exists(patcherpath))
+                {
+                    using (var client = new WebClient())
+                    {
+                        client.DownloadFile("http://osuokayu.moe/static/Osu!Patcher.zip", userFolderPath + "\\.OsuServerLoader\\Osu!Patcher.zip");
+                        System.IO.Compression.ZipFile.ExtractToDirectory(userFolderPath + "\\.OsuServerLoader\\Osu!Patcher.zip", userFolderPath + "\\.OsuServerLoader");
+                        File.Delete(userFolderPath + "\\.OsuServerLoader\\Osu!Patcher.zip");
+                    }
+                }
                 await Task.Delay(1000);
                 var patcherProcessHandler = new Process();
-                patcherProcessHandler.StartInfo.FileName = userFolderPath + "\\.OsuServerLoader\\Osu!Patcher\\osu!.patcher.exe";
+                patcherProcessHandler.StartInfo.FileName = patcherpath + "\\osu!.patcher.exe";
                 patcherProcessHandler.Start();
             }
 
