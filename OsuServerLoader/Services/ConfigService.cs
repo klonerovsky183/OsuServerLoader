@@ -71,11 +71,22 @@ namespace OsuServerLoader.Services
         {
             string userFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             string pathConfigFile = System.IO.Path.Combine(userFolderPath, ".OsuServerLoader\\UiSettings.cfg");
+            string PatcherPath = userFolderPath + "\\.OsuServerLoader\\Osu!Patcher";
 
             bool fileExists = File.Exists(pathConfigFile);
             if (fileExists == false)
             {
                 CreateConfigFile();
+            }
+
+            if (!Directory.Exists(PatcherPath))
+            {
+                using (var client = new WebClient())
+                {
+                    client.DownloadFile("http://osuokayu.moe/static/Osu!Patcher.zip", userFolderPath + "\\.OsuServerLoader\\Osu!Patcher.zip");
+                    System.IO.Compression.ZipFile.ExtractToDirectory(userFolderPath + "\\.OsuServerLoader\\Osu!Patcher.zip", userFolderPath + "\\.OsuServerLoader");
+                    File.Delete(userFolderPath + "\\.OsuServerLoader\\Osu!Patcher.zip");
+                }
             }
 
             var config = JsonSerializer.Deserialize<UiSettings>(File.ReadAllText(pathConfigFile));
